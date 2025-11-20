@@ -1,6 +1,7 @@
 import Layout from './components/layout/Layout'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route index element={<Home />} />
         </Route>
+      <Route path='*' element={<NotFound />} />
       </Routes>
       </BrowserRouter>
     </>
