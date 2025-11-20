@@ -1,4 +1,6 @@
 import React from 'react';
+import SearchBreedInput from './SearchBreedInput';
+import DogSizeCard from './DogSizeCard';
 
 const dogCards = [
   {
@@ -49,23 +51,7 @@ const Home = () => {
           There are more breeds than you know, you can explore by searching and
           filtering below
         </p>
-        <input
-          type='text'
-          placeholder='Search a dog breed...'
-          className='
-          w-full max-w-md
-          px-5 py-3 mt-5
-          rounded-full
-          border-2 border-amber-600
-          bg-amber-100
-          placeholder-amber-700
-          text-gray-900
-          focus:outline-none focus:ring-2 focus:ring-amber-900 focus:border-amber-900
-          transition
-          duration-200
-          placeholder-opacity-80
-          '
-        />
+        <SearchBreedInput />
       </div>
       <div className='mt-15'>
         <h2 className='font-bold text-4xl text-gray-700 text-center'>
@@ -73,16 +59,7 @@ const Home = () => {
         </h2>
         <div className='flex flex-wrap justify-center gap-6 mt-10'>
           {dogCards.map((dogCard, index) => (
-            <div key={index} className='border border-gray-300 rounded-xl p-4 w-60 shadow-sm hover:shadow-lg transition'>
-              <img
-                src={dogCard.src}
-                alt={dogCard.alt}
-                className='w-full object-contain rounded-md'
-              />
-              <h3 className='text-xl font-semibold mt-3'>{dogCard.title}</h3>
-              <span className='text-gray-600 text-sm'>{dogCard.weight}</span>
-              <p className='text-gray-800 font-medium mt-1'>{dogCard.result}</p>
-            </div>
+            <DogSizeCard key={index} {...dogCard} />
           ))}
         </div>
       </div>
