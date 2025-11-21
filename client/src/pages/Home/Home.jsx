@@ -42,8 +42,8 @@ const dogCards = [
 
 const Home = () => {
   return (
-    <section className='flex flex-col items-center min-h-screen pt-20'>
-      <div className='max-w-5xl px-2 text-center'>
+    <section className='flex flex-col items-center min-h-screen pt-20 px-2'>
+      <div className='max-w-5xl text-center'>
         <h1 className='font-bold text-7xl text-blue-950'>
           Search & Explore Different Dog Breeds
         </h1>
