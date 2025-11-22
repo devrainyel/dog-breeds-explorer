@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBreedInput from './SearchBreedInput';
 import DogSizeCard from './DogSizeCard';
 
@@ -40,7 +40,10 @@ const dogCards = [
   },
 ];
 
+
+
 const Home = () => {
+
   return (
     <section className='flex flex-col items-center min-h-screen pt-20 px-2'>
       <div className='max-w-5xl text-center'>
