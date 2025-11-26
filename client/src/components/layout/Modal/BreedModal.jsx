@@ -35,7 +35,7 @@ const BreedModal = ({ setShowModal, breed }) => {
               <b>Temperament:</b> <i>{breed.temperament}</i>
             </p>
           </div>
-          <a href="">More Details</a>
+          <a href="#" className='text-sm rounded-full bg-amber-400 py-2 px-5 mt-5'>More Details</a>
         </div>
         <button
           onClick={() => setShowModal(false)}
