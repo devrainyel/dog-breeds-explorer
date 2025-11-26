@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import BreedModal from '../../components/layout/Modal/BreedModal'
 import { X } from 'lucide-react'
 
 
 const SearchBreedInput = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [showDropdown, setShowDropdown] = useState(false);
-  const [selectedBreed, setSelectedBreed] = useState([]);
+  const [dogBreeds, setDogBreeds] = useState([]);
+  const [currentBreed, setCurrentBreed] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchBreeds = async () => {
@@ -25,19 +28,21 @@ const SearchBreedInput = () => {
           headers: {
             'x-api-key': dogApiKey,
           },
-        });
+        }); 
 
         if (!res.ok) {
           throw new Error(`Failed to fetch breeds. Status: ${res.status} ${res.statusText}`)
         }
 
         const data = await res.json();
-        const breedNames = data.map(breed => breed.name).sort();
-        setSelectedBreed(breedNames);
+        console.log(data);
+        
+        // const breedNames = data.map(breed => breed.name).sort();
+        setDogBreeds(data);
       } catch (err) {
         console.log('Error fetching breeds', err);
         setError(err.message);
-        setSelectedBreed([]);
+        setDogBreeds([]);
       } finally {
         setIsLoading(false);
       }
@@ -53,13 +58,16 @@ const SearchBreedInput = () => {
     setSearchTerm('')
   }
 
-  const filteredBreeds = selectedBreed.filter(breed =>
-    breed.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredBreeds = dogBreeds.filter(breed =>
+    breed.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleOptionClick = (breed) => {
-    setSearchTerm(breed);
+  const handleOptionClick = (breedName) => {
+    const breedData = dogBreeds.find(b => b.name === breedName);
+    setCurrentBreed(breedData)
+    setSearchTerm(breedName);
     setShowDropdown(false);
+    setShowModal(true);
   }; 
 
   return (
@@ -73,7 +81,7 @@ const SearchBreedInput = () => {
           placeholder={isLoading ? 'Fetching breeds...' : 'Search a dog breed...'}
           disabled={isLoading}
           onFocus={() => setShowDropdown(true)}
-          onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+          onBlur={() => setShowDropdown(false)}
           className='
           w-full
           px-5 py-3 
@@ -93,11 +101,11 @@ const SearchBreedInput = () => {
           <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-gray-300 bg-slate-200 shadow-lg text-start">
             {filteredBreeds.map((breed) => (
               <li
-                key={breed}
-                onMouseDown={() => handleOptionClick(breed)}
+                key={breed.id}
+                onMouseDown={() => handleOptionClick(breed.name)}
                 className="cursor-pointer px-4 py-2 hover:bg-amber-100"
               >
-                {breed}
+                {breed.name}
               </li>
             ))}
           </ul>
@@ -107,6 +115,8 @@ const SearchBreedInput = () => {
           No breeds found matching "{searchTerm}"
         </div>
         )}
+        {showModal && <BreedModal setShowModal={setShowModal} breed={currentBreed} />}
+
       </div>
       </div>
     </>
