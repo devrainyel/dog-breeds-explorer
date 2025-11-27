@@ -1,21 +1,13 @@
-import express from 'express';
 import dotenv from 'dotenv';
-import connectDB from './config/database.js';
-import cors from "cors";
+import connectDB from './src/config/database.js';
+import app from './src/app.js';
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-const app = express();
+const start = async () => {
+  await connectDB();
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+}
 
-app.use(cors());
-
-app.use(express.json());
-
-connectDB();
-
-app.get('/', (req, res) => {
-  res.send('API working!');
-});
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+start();
