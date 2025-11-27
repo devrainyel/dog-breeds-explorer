@@ -54,9 +54,9 @@ const Home = () => {
         <SearchBreedInput />
       </div>
       <div className="mt-15">
-          <h2 className="font-bold text-center text-4xl text-gray-700">
-            There are different sizes of dogs
-          </h2>
+        <h2 className="font-bold text-center text-4xl text-gray-700">
+          There are different sizes of dogs
+        </h2>
         <div className="flex flex-wrap justify-center gap-6 mt-10">
           {dogCards.map((dogCard, index) => (
             <DogSizeCard key={index} {...dogCard} />

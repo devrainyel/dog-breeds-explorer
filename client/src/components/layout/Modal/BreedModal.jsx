@@ -6,7 +6,6 @@ const BreedModal = ({ setShowModal, breed }) => {
     <div className="fixed inset-0 bg-opacity-90 backdrop-blur-sm flex-center">
       <div className="relative bg-amber-100 w-full max-w-2xl p-4 rounded-lg">
         <h2 className="text-4xl font-bold text-blue-950">{breed.name}</h2>
-
         <div className="flex flex-col items-center md:p-5">
           <img
             src={breed.image.url}
