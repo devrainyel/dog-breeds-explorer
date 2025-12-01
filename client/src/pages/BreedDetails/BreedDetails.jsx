@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react";
 const BreedDetails = () => {
   const { id } = useParams();
   const [breed, setBreed] = useState(null);
-  const [dogFact, setDogFact] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
