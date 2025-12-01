@@ -26,7 +26,7 @@ const SearchBreedInput = () => {
         }
 
         const data = await res.json();
-
+        console.log(data);
         setDogBreeds(data);
       } catch (err) {
         console.log("Error fetching breeds", err);
