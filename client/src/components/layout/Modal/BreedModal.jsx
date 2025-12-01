@@ -1,5 +1,6 @@
 import React from "react";
 import { X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const BreedModal = ({ setShowModal, breed }) => {
   const imageUrl =
@@ -42,12 +43,13 @@ const BreedModal = ({ setShowModal, breed }) => {
               <b>Temperament:</b> <i>{breed.temperament}</i>
             </p>
           </div>
-          <a
-            href="#"
+          <Link
+            to={`/breed/${breed.id}`}
+            onClick={() => setShowModal(false)}
             className="text-sm rounded-full bg-amber-400 py-2 px-5 mt-5"
           >
             More Details
-          </a>
+          </Link>
         </div>
         <button
           onClick={() => setShowModal(false)}
