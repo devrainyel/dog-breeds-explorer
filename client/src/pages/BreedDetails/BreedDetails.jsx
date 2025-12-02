@@ -46,7 +46,7 @@ const BreedDetails = () => {
   if (isLoading) {
     return (
       <div className='min-h-screen flex items-center justify-center'>
-        <div className='text-2xl text-gray-700'>Loading breed details...</div>
+        <div className='text-2xl text-gray-700 w-32'><img src="/dog-logo.svg" alt="dog logo loading" /></div>
       </div>
     );
   }
